@@ -1,4 +1,5 @@
 <div class="comments-content">
+    {{-- {{ dd($comments) }} --}}
     @foreach ($comments as $comment)
    
     <div class="comments-body">

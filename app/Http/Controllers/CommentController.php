@@ -17,9 +17,9 @@ class CommentController extends Controller
     public function index()
     {   // otra forma de acceder a las tablas de la base de datos DB::table('')
         $comments = DB::table('comments')
-                 ->join('articles', 'comments.article_id', '=', 'articles_id')
+                 ->join('articles', 'comments.article_id', '=', 'article_id')
                  ->join('users', 'comments.user_id', '=', 'users.id')
-                 ->select('comments.value', 'comments.description', 'articles.title', 'users.full_name')
+                 ->select('comments.id','comments.value', 'comments.description', 'articles.title', 'users.full_name')
                  ->where('articles.user_id', '=', Auth::user()->id)
                  ->orderBy('articles.id', 'desc')
                  ->get();
@@ -98,7 +98,8 @@ class CommentController extends Controller
     {
       $comment->delete();
       
-      return redirect()->action([CommentController::class, 'index'], compact('comments'))
+    #I want to redirect back to the same page with a success message
+    return redirect()->action([CommentController::class, 'index'], compact('comment'))
              ->with('success-delete', 'Comentario eliminado con éxito');
     }
 }

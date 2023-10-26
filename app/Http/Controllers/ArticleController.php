@@ -94,7 +94,7 @@ class ArticleController extends Controller
     {
         $this->authorize('published', $article);
         $comments = $article->comments()
-        ->with('user') // Carga la relación 'user'
+        ->with('user')// Carga la relación 'user'
         ->simplePaginate(5);
     
     //    dd($comments->first());
