@@ -25,12 +25,12 @@ class ProfileRequest extends FormRequest
             //reglas de validacion
             'full_name' => 'required',
             'email' => 'required',
-            'photo' => 'nullable|mimes:jpeg,jpg,png',
-            'profession' => 'nullable|max:60',
-            'about' => 'nullable|max:255',
-            'twitter' => 'nullable|url', 
-            'linkedin' => 'nullable|url',
-            'facebook' => 'nullable|url',
+            'photo' => 'nullable|mimes:webp,jpeg,jpg,png',
+            // 'profession' => 'nullable|max:60',
+            // 'about' => 'nullable|max:255',
+            // 'twitter' => 'nullable|url', 
+            // 'linkedin' => 'nullable|url',
+            // 'facebook' => 'nullable|url',
             
         ];
     }

@@ -1,11 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.base')
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/login/css/reset.css') }}">
+@endsection
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">{{ __('Restablecer contraseña') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -16,6 +20,10 @@
 
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
+                        
+                        {{-- <h2 class="reset-title">Restablecer tu contraseña</h2> --}}
+                        <p class="alert-send">Escribe tu correo electrónico y te enviaremos las 
+                            instrucciones para restablecer tu contraseña.</p>
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>

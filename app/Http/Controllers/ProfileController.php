@@ -15,7 +15,8 @@ class ProfileController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Profile $profile)
-    {
+    {   
+        $this->authorize('view', $profile);
         return  view('subscriber.profiles.edit', compact('profile'));
     }
 
@@ -23,39 +24,31 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      */
     public function update(ProfileRequest $request, Profile $profile)
-    {
+    {   
+        $this->authorize('update', $profile);
         $user = Auth::user();
-
+        // dd($request['photo']);
         //si el usuario sube una foto
         if($request->hasFile('photo')){
             //eliminar foto anterior
-            File::delete(public_path('storage/' .$profile->photo));
+            File::delete(public_path('storage/'.$profile->photo));
             //aisgnar nueva foto
             $photo = $request['photo']->store('profiles');
          }else{ //si no que deje la foto que encuentra
-            $photo =$user->profile->photo;
+            $photo = $user->profile->photo;
             }
             //asignar nombre y correo
             $user->full_name = $request->full_name;
             $user->email = $request->email;
-            //Asignar campos adicionales 
-            $user->profile->profession = $request->profession;
-            $user->profile->about = $request->about;
+
+            
+            //Asignar foto
             $user->profile->photo = $photo;
-            $user->profile->twitter = $request->twitter;
-            $user->profile->linkedin = $request->linkedin;
-            $user->profile->facebook = $request->facebook;
 
             //Guardar campos de usuario
-            //save the user fields
             $user->save();
 
-
-
-  
-            
             //Guardar campos de perfil
-
             $user->profile->save();
 
             return redirect()->route('profiles.edit', $user->profile->id);

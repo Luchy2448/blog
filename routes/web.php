@@ -39,47 +39,48 @@ Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->nam
 */
 
 //Rutas del admin
+ Route::middleware(['auth'])->group(function () {
+    Route::namespace('App\Http\Controllers')->prefix('admin')->group(function () {
 
-Route::namespace('App\Http\Controllers')->prefix('admin')->group(function () {
-
-    //Articulos
-    Route::resource('articles', 'ArticleController')
+        //Articulos
+        Route::resource('articles', 'ArticleController')
                 ->except('show')
                 ->names('articles');
 
 
-//Categorias
+        //Categorias
 
-Route::resource('categories', 'CategoryController')
-//queremos que nos cree todas las rutas excepto SHOW.
-               ->except('show')
-               ->names('categories');
-                          
+        Route::resource('categories', 'CategoryController')
+        //queremos que nos cree todas las rutas excepto SHOW.
+                    ->except('show')
+                    ->names('categories');
+                                
 
-//Comentarios
+        //Comentarios
 
-Route::resource('comments', 'CommentController')
-                ->only('index', 'destroy')
-                ->names('comments');
+        Route::resource('comments', 'CommentController')
+                        ->only('index', 'destroy')
+                        ->names('comments');
 
-//Perfiles
+        //Perfiles
 
-Route::resource('profiles', 'ProfileController')
-                ->only('edit', 'update', 'show')
-                ->names('profiles');
+        Route::resource('profiles', 'ProfileController')
+                        ->only('edit', 'update', 'show')
+                        ->names('profiles');
 
-Route::get('/profiles/{profiles}', [ProfileController::class, 'queryArticle'])->name('profiles.queryArticle');  
-
-
-//Ver artículos   
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');     
+        Route::get('/profiles/{profiles}', [ProfileController::class, 'queryArticle'])->name('profiles.queryArticle');  
 
 
-//Ver artículos por categorías
-Route::get('category/{category}', [CategoryController::class, 'detail'])->name('categories.detail');
+        //Ver artículos   
+        Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');     
 
-//Guardar los comentarios         
-Route::post('/comment', [CommentController::class, 'store'])->name('comments.store');      
 
-Auth::routes();
- });
+        //Ver artículos por categorías
+        Route::get('category/{category}', [CategoryController::class, 'detail'])->name('categories.detail');
+
+        //Guardar los comentarios         
+        Route::post('/comment', [CommentController::class, 'store'])->name('comments.store');      
+});
+
+}); 
+Auth::routes(); 

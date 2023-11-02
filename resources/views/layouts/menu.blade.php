@@ -22,7 +22,7 @@
 
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item"
-                        href="#">Perfil</a></li>
+                        href="{{ route('profiles.edit', ['profile' => Auth::user()->profile->id]) }}">Perfil</a></li>
                 
                 <li><a class="dropdown-item" href="{{ route('admin.index') }}">Ir al admin</a></li>
                 

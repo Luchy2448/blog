@@ -13,9 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <pre>
-                    {{ var_dump ($categories)}}
-                </pre>
+             
                 </div>
             </div>
         </div>
