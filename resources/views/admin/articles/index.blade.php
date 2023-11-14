@@ -43,7 +43,7 @@
                 @foreach ($articles as $article)
                 <tr>
                     <td>{{ Str::limit($article->title, 25, '...') }}</td>
-                    <td>{{ $article->category->name }}</td>
+                    <td>{{ $article->category ? $article->category->name : '' }}</td>
                     <td>
                         <input type="checkbox" name="status" id="status" class="form-check-input ml-4"
                         {{ $article->status ? 'checked="checked"' : '' }}
@@ -73,5 +73,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

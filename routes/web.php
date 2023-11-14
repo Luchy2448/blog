@@ -64,9 +64,17 @@ Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->nam
 
         //Perfiles
 
-        Route::resource('profiles', 'ProfileController')
-                        ->only('edit', 'update', 'show')
-                        ->names('profiles');
+        // Route::resource('profiles', 'ProfileController')
+        //                 ->only('edit', 'update', 'show')
+        //                 ->names('profiles');
+
+                        Route::get('profiles', 'ProfileController@index')->name('profiles.index');
+                        Route::get('profiles/create', 'ProfileController@create')->name('profiles.create');
+                        Route::get('profiles/{profile}/edit', 'ProfileController@edit')->name('profiles.edit');
+                        Route::get('profiles/{profile}', 'ProfileController@show')->name('profiles.show');
+                        Route::put('profiles/{profile}', 'ProfileController@update')->name('profiles.update');
+                        Route::delete('profiles/{profile}', 'ProfileController@destroy')->name('profiles.destroy');
+
 
         Route::get('/profiles/{profiles}', [ProfileController::class, 'queryArticle'])->name('profiles.queryArticle');  
 

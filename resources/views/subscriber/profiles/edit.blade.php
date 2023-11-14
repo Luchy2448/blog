@@ -45,6 +45,26 @@
                 </span>
             @enderror
 
+            <div class="input-content">
+                <label for="name">Profesión</label>
+                <input type="text" name="profession" placeholder="Profesión" value="{{ $profile->profession }}"autofocus>
+                 
+             @error('profession')
+                <span class="text-danger">
+                    <span>{{ $message }}</span>
+                </span>
+            @enderror
+
+            <div class="input-content">
+                <label for="name">Sobre mi</label>
+                <input type="text" name="about" placeholder="Sobre mi" value="{{ $profile->about }}"autofocus>
+
+             @error('about')
+                <span class="text-danger">
+                    <span>{{ $message }}</span>
+                </span>
+            @enderror
+
             </div>
 
             <div class="input-content">

@@ -22,7 +22,7 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         $slug = request()->isMethod('put') ? 'required|unique:articles,slug,' .$this->id : 'required|unique:articles';
-        $image = request()->isMethod('put') ? 'nullable|mimes:jpeg,jpg,png,gif,svg|max:8000' : 'required|image';
+        $image = request()->isMethod('put') ? 'nullable|mimes:webp,jpeg,jpg,png,gif,svg|max:8000' : 'required|image';
         return [
             //Reglas de validaciones
             'title' => 'required|min:5|max:255',

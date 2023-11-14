@@ -45,6 +45,12 @@ class ProfileController extends Controller
             //Asignar foto
             $user->profile->photo = $photo;
 
+            //asignar otros campos
+            $user->profile->profession = $request->profession;
+            $user->profile->about = $request->about;
+           
+
+
             //Guardar campos de usuario
             $user->save();
 
@@ -56,6 +62,19 @@ class ProfileController extends Controller
     public function destroy(Profile $Profile){
         
     }
+
+    function show(Profile $profile){
+    
+        $this->authorize('view', $profile);
+        $articles = Article::where([
+            ['user_id', $profile->user_id], 
+            ['status', '1']])->simplePaginate(8);
+
+            return view('subscriber.profiles.show',compact('profile', 'articles'));
+        
+    }
+
+
 public function queryArticle(Profile $profile){
     $articles = Article::where([
         ['user_id', $profile->user_id], 
