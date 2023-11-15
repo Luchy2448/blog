@@ -24,13 +24,13 @@ class UserSeeder extends Seeder
         'email' => 'lucianam@example.com',
         'password' => Hash::make('12345678'),
         
-     ]);
+     ])->assignRole('Administrator');
 
      User::create([
         'full_name' => 'Matias Correa',
         'email' => 'Matias@example.com',
         'password' => Hash::make('12345678'),
-     ]);
+     ])->assignRole('Author');
      
    //    $users = [
    //       [
