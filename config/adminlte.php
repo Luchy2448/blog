@@ -332,16 +332,21 @@ return [
         [
             'text' => 'Categorías',
             'route'  => 'categories.index',
-            'icon' => 'fas fa-poll',
+            'icon' => 'fa fa-bookmark',
             'active' => ['admin/categories*'],
         ],
         [
             'text' => 'Comentarios',
             'route'  => 'comments.index',
-            'icon' => 'fas fa-poll',
+            'icon' => 'fa fa-comment',
             'active' => ['admin/comments*'],
         ],
-    
+        [
+            'text' => 'Usuarios',
+            'route'  => 'users.index',
+            'icon' => 'fa fa-users',
+            'active' => ['admin/users*'],
+        ],
     ],
 
     /*
