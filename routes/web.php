@@ -62,6 +62,11 @@ Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->nam
                         ->only('index', 'destroy')
                         ->names('comments');
 
+        //Usuarios
+        Route::resource('users', 'UserController')
+                       ->except( 'create', 'store','show')
+                       ->names('users');
+
         //Perfiles
 
         // Route::resource('profiles', 'ProfileController')
@@ -87,8 +92,12 @@ Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->nam
         Route::get('category/{category}', [CategoryController::class, 'detail'])->name('categories.detail');
 
         //Guardar los comentarios         
-        Route::post('/comment', [CommentController::class, 'store'])->name('comments.store');      
+        Route::post('/comment', [CommentController::class, 'store'])->name('comments.store'); 
+        
+        //
+        
 });
+
 
 }); 
 Auth::routes(); 
