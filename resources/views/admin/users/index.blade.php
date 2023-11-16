@@ -8,13 +8,8 @@
 
 @section('content')
 
-{{-- si se edita un usuario que diga que el rol se ha establecido con éxito --}}
-@if (session('success-update'))
-<div class="alert alert-success">
-     {{ session('success-update') }}
-</div>
-{{-- por otro lado si se elimina que diga usuario eliminado con exito --}}
-@elseif(session('success-delete'))
+
+@if(session('success-delete'))
 <div class="alert alert-success">
     {{ session('success-delete') }}
 @endif
