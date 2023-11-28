@@ -315,37 +315,44 @@ return [
             'text'        => 'Dashboard',
             'route'         => 'admin.index',
             'icon'        => 'fas fa-pager',
+            'can'         => 'admin.index',
        
         ],
-        ['header' => 'PANEL'],
         [
             'text' => 'Ir al blog',
             'route' => 'home.index',
             'icon' => 'fa fa-home',
         ],
+
+        ['header' => 'PANEL'],
+      
         [
             'text' => 'Artículos',
             'route'  => 'articles.index',
             'icon' => 'fas fa-poll',
             'active' => ['admin/articles*'],
+            'can' => 'articles.index',
         ],
         [
             'text' => 'Categorías',
             'route'  => 'categories.index',
             'icon' => 'fa fa-bookmark',
             'active' => ['admin/categories*'],
+            'can' => 'categories.index',
         ],
         [
             'text' => 'Comentarios',
             'route'  => 'comments.index',
             'icon' => 'fa fa-comment',
             'active' => ['admin/comments*'],
+            'can' => 'comments.index',
         ],
         [
             'text' => 'Usuarios',
             'route'  => 'users.index',
             'icon' => 'fa fa-users',
             'active' => ['admin/users*'],
+            'can' => 'users.index', 
         ],
     ],
 

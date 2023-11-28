@@ -37,7 +37,7 @@ class UserController extends Controller
     {
         //Editar el rol del usuario
         //llenar la tabla intermedia
-        $user->roles()->sync($request->roles);
+        $user->roles()->sync($request->role);
 
         return redirect()->route('users.edit', $user)
                          ->with('success-update', 'Rol establecido con éxito');

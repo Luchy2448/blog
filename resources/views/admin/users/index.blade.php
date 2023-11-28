@@ -12,6 +12,7 @@
 @if(session('success-delete'))
 <div class="alert alert-success">
     {{ session('success-delete') }}
+</div>
 @endif
 
 <div class="card">

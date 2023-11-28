@@ -40,8 +40,8 @@ class DatabaseSeeder extends Seeder
         
         //llamando Factories
         Category::factory(8)->create();
-        Article::factory(20)->create();
-        Comment::factory(20)->create();
+        Article::factory(40)->create();
+        Comment::factory(50)->create();
         
     }
 }
