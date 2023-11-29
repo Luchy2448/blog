@@ -8,6 +8,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RoleController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/all', [HomeController::class, 'all'])->name('home.all');
 //Admin
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/admin', [AdminController::class, 'index'])
+                                         ->middleware(['can:admin.index'])
+                                         ->name('admin.index');
 
 /*                
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
@@ -66,6 +70,11 @@ Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->nam
         Route::resource('users', 'UserController')
                        ->except( 'create', 'store','show')
                        ->names('users');
+
+        //Roles
+          Route::resource('roles', 'RoleController')
+                       ->except('show')
+                       ->names('roles');
 
         //Perfiles
 
