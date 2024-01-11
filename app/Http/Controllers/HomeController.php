@@ -40,7 +40,8 @@ class HomeController extends Controller
     //    traeme al usuario logeado
         // $user = Auth::user(); 
         // dd($user->profile);        
-        return view('home.index', compact('articles', 'navbar'));
+        // return view('home.index', compact('articles', 'navbar'));
+        return view('theme-front.home', compact('articles', 'navbar'));
     }
     //Todas las categorías
     public function all(){

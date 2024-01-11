@@ -3,7 +3,7 @@
 
         <div class="logo">
             <!--Logo-->
-            <a href="{{ route('home.index') }}"><img src="{{ asset('img/logo.png') }}" alt="Logo"></a>
+            <a href=""><img src="{{ asset('img/logo.png') }}" alt="Logo"></a>
         </div>
         @guest <!--Si no está logueado/autenticado-->
         <ul class="d-flex">

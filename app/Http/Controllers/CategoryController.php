@@ -122,6 +122,6 @@ class CategoryController extends Controller
             ['status', '1'],
             ['is_featured', '1'],
         ])->paginate(3); 
-        return view('subscriber.categories.detail', compact('articles', 'category', 'navbar'));   
+        return view('theme-front.subscriber.categories.detail', compact('articles', 'category', 'navbar'));   
     }
 }

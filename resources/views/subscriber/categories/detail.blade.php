@@ -12,6 +12,8 @@
 @section('content')
 
 @include('layouts.navbar')
+
+
 <div class="text-primary">
     <h2 class="fw-bold fs-1">{{ strtoupper($category->name)}}</h2>
 </div> 

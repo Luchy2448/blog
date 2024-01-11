@@ -105,9 +105,14 @@ class ArticleController extends Controller
         $comments = $article->comments()
         ->with('user')// Carga la relación 'user'
         ->simplePaginate(5);
+
+        $navbar = Category::where([
+            ['status', '1'],
+            ['is_featured', '1']
+        ])->paginate(3);  
     
     //    dd($comments->first());
-       return view('subscriber.articles.show', compact('article', 'comments'));
+       return view('theme-front.subscriber.articles.show', compact('article', 'comments', 'navbar'));
     }
 
     /**

@@ -23,7 +23,7 @@ class CommentRequest extends FormRequest
     {
         return [
         //reglas de validación
-        'value' => 'required|numeric|min:1|max:5',
+        // 'value' => 'required|numeric|min:1|max:5',
         'description' => 'required|max:255',
         'article_id' => 'required',
         ];

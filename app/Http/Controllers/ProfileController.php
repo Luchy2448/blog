@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Profile;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -74,7 +75,12 @@ class ProfileController extends Controller
             ['user_id', $profile->user_id], 
             ['status', '1']])->simplePaginate(8);
 
-            return view('subscriber.profiles.show',compact('profile', 'articles'));
+            $navbar = Category::where([
+                ['status', '1'],
+                ['is_featured', '1']
+            ])->paginate(3);          
+
+            return view('theme-front.subscriber.profiles.show',compact('profile', 'articles', 'navbar'));
         
     }
 
@@ -84,7 +90,7 @@ public function queryArticle(Profile $profile){
         ['user_id', $profile->user_id], 
         ['status', '1']])->simplePaginate(8);
 
-        return view('subscriber.profiles.show',compact('profile', 'articles'));
+        return view('theme-front.subscriber.profiles.show',compact('profile', 'articles'));
 }
 }
 

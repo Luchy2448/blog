@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +39,24 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    
     }
+
+    protected function view()
+    {  
+
+        return view('theme-front.login');
+    }
+
+   public function authenticated(Request $request)
+{    
+
+    $email = $request['email'];
+    $password = $request['password'];
+    
+
+    if (Auth::attempt(['email' => $email, 'password' => $password])) {
+        return redirect('/');
+    }
+}
 }

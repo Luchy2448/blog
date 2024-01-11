@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
@@ -21,10 +22,15 @@ use App\Http\Controllers\RoleController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/ingresar', [LoginController::class, 'view'])
+    ->name('view.login');
+
+Route::post('/authenticated', [LoginController::class, 'authenticated'])
+    ->name('authenticated.login');
 
 
 //Principal
-Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('/', [HomeController::class, 'index'])->name('theme-front.home');
 Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 Route::get('/all', [HomeController::class, 'all'])->name('home.all');
 //Admin
@@ -82,12 +88,21 @@ Route::delete('/articles/{article}', [ArticleController::class, 'destroy'])->nam
         //                 ->only('edit', 'update', 'show')
         //                 ->names('profiles');
 
-                        Route::get('profiles', 'ProfileController@index')->name('profiles.index');
-                        Route::get('profiles/create', 'ProfileController@create')->name('profiles.create');
-                        Route::get('profiles/{profile}/edit', 'ProfileController@edit')->name('profiles.edit');
-                        Route::get('profiles/{profile}', 'ProfileController@show')->name('profiles.show');
-                        Route::put('profiles/{profile}', 'ProfileController@update')->name('profiles.update');
-                        Route::delete('profiles/{profile}', 'ProfileController@destroy')->name('profiles.destroy');
+
+        Route::get('/profiles', [ProfileController::class, 'index'])->name('profiles.index');
+        Route::get('/profiles/create', [ProfileController::class, 'create'])->name('profiles.create');
+        Route::get('/profiles/{profile}/edit', [ProfileController::class, 'edit'])->name('profiles.edit');
+        Route::get('/profiles/{profile}', [ProfileController::class, 'show'])->name('profiles.show');
+        Route::put('/profiles/{profile}', [ProfileController::class, 'update'])->name('profiles.update');
+        Route::delete('/profiles/{profile}', [ProfileController::class, 'destroy'])->name('profiles.destroy');
+
+
+                        // Route::get('profiles', 'ProfileController@index')->name('profiles.index');
+                        // Route::get('profiles/create', 'ProfileController@create')->name('profiles.create');
+                        // Route::get('profiles/{profile}/edit', 'ProfileController@edit')->name('profiles.edit');
+                        // Route::get('profiles/{profile}', 'ProfileController@show')->name('profiles.show');
+                        // Route::put('profiles/{profile}', 'ProfileController@update')->name('profiles.update');
+                        // Route::delete('profiles/{profile}', 'ProfileController@destroy')->name('profiles.destroy');
 
 
         Route::get('/profiles/{profiles}', [ProfileController::class, 'queryArticle'])->name('profiles.queryArticle');  
